@@ -1,18 +1,18 @@
-import { Mongoose } from "mongoose";
-const { Schema } = Mongoose;
+import { model, Schema } from "mongoose";
 
-/**
- * Required studentData follows:
- * @param studentData.ID
- * @param studentData.name
- * @param studentData.birthDate
- * @param studentData.cpf
- * @param studentData.classes
- * @param studentData.grades
- * @param studentData.notes
- */
+const studentSchema: Schema = new Schema({
+    name: String,
+    contact: String,
+    email: String,
+    parentContact: String,
+    birthDate: Date,
+    address: String,
+    cpf: {type: String, unique: true },
+    school: String,
+    notes: Array,
+    class: String
+});
 
-export default function createSchema(studentData) {
-    
-}
+const studentModel = model ('Student', studentSchema);
 
+export { studentModel };
