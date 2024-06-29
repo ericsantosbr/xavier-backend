@@ -1,9 +1,9 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { createClass, getClass } from "../helpers/classesHelpers";
 
-export const schoolsRouter: Router = Router();
+export const classesRouter: Router = Router();
 
-schoolsRouter.get('/:id', (req: Request, res: Response, next: NextFunction) => {
+classesRouter.get('/:id', (req: Request, res: Response, next: NextFunction) => {
     let foundSchoolData = getClass(req.params.id);
     
     res.json(foundSchoolData);
@@ -11,7 +11,7 @@ schoolsRouter.get('/:id', (req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-schoolsRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
+classesRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
     let schoolCreateResult = createClass(req.body);
 
     res.json(schoolCreateResult);
@@ -19,7 +19,7 @@ schoolsRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-schoolsRouter.patch('/', (req: Request, res: Response, next: NextFunction) => {
+classesRouter.patch('/', (req: Request, res: Response, next: NextFunction) => {
     let responseJson = {
         id: req.params.id,
         name: 'Central'

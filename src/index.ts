@@ -4,6 +4,7 @@ import { Request, Response } from 'express';
 import { studentsRouter } from './schoolAPIs/students';
 import { teachersRouter } from './schoolAPIs/teachers';
 import { schoolsRouter } from './schoolAPIs/schools';
+import { classesRouter } from './schoolAPIs/classes';
 
 const app = express();
 const port = 8050;
@@ -16,6 +17,7 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/students', studentsRouter);
 app.use('/teachers', teachersRouter);
 app.use('/schools', schoolsRouter);
+app.use('/classes', classesRouter);
 
 app.listen(port, () => {
     return console.log('Listening at port ' + port);

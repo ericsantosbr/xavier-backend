@@ -4,14 +4,14 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-export async function getClass(schoolId: string) {
+export async function getClass(classid: string) {
     await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/XavierDB`);
 
     const Class = classModel;
     let schoolQueryResult;
 
     try {
-        const id = new Types.ObjectId(schoolId);
+        const id = new Types.ObjectId(classid);
         schoolQueryResult = await Class.findById(id);
     } catch (e) {
         console.debug(e);
@@ -20,12 +20,12 @@ export async function getClass(schoolId: string) {
     return schoolQueryResult;
 }
 
-export async function createClass(schoolData: Object) {
+export async function createClass(classData: Object) {
     await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/XavierDB`);
 
     const Class = classModel;
 
-    let newSchool = new Class(schoolData);
+    let newSchool = new Class(classData);
 
     let result = newSchool.save().then(() => console.log('Class created'));
 
