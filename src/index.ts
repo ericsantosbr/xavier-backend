@@ -2,8 +2,8 @@ import express from 'express';
 import { Request, Response } from 'express';
 
 import { studentsRouter } from './schoolAPIs/students';
-import { teachersRouter } from './schoolAPIs/teacher';
-import { schoolsRouter } from './schoolAPIs/school';
+import { teachersRouter } from './schoolAPIs/teachers';
+import { schoolsRouter } from './schoolAPIs/schools';
 
 const app = express();
 const port = 8050;
