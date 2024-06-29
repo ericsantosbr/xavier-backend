@@ -21,7 +21,10 @@ studentsRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-studentsRouter.patch('/', (req: Request, res: Response, next: NextFunction) => {
+studentsRouter.patch('/:id', (req: Request, res: Response, next: NextFunction) => {
+    const studentId = req.params.id;
+    const patchedData = req.body;
+
     let responseJson = {
         id: req.params.id,
         name: 'Eric'
