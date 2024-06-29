@@ -15,7 +15,7 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use('/students', studentsRouter);
 app.use('/teachers', teachersRouter);
-app.use('/school', schoolsRouter);
+app.use('/schools', schoolsRouter);
 
 app.listen(port, () => {
     return console.log('Listening at port ' + port);

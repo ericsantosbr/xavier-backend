@@ -1,25 +1,20 @@
 import { Router, Request, Response, NextFunction } from "express";
+import { createSchool, getSchool } from "../helpers/schoolHelpers";
 
 export const schoolsRouter: Router = Router();
 
 schoolsRouter.get('/:id', (req: Request, res: Response, next: NextFunction) => {
-    let responseJson = {
-        id: req.params.id,
-        name: 'Central'
-    }
-
-    res.json(responseJson);
+    let foundSchoolData = getSchool(req.params.id);
+    
+    res.json(foundSchoolData);
 
     next();
 });
 
 schoolsRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
-    let responseJson = {
-        id: req.params.id,
-        name: 'Central'
-    }
+    let schoolCreateResult = createSchool(req.body);
 
-    res.json(responseJson);
+    res.json(schoolCreateResult);
 
     next();
 });
