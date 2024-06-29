@@ -2,9 +2,12 @@ import { Schema, model } from "mongoose";
 
 const classSchema = new Schema({
     name: String,
-    students: String
+    students: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Students'
+    }]
 });
 
-const classModel = model ('Class', classSchema);
+const classModel = model ('Classes', classSchema);
 
 export { classModel };
