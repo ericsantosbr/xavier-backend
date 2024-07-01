@@ -4,15 +4,15 @@ import * as dotenv from 'dotenv';
 
 dotenv.config();
 
-export async function getClass(classid: string) {
+export async function getClass(classId: string) {
     await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/XavierDB`);
 
     const Class = classModel;
     let schoolQueryResult;
 
     try {
-        const id = new Types.ObjectId(classid);
-        schoolQueryResult = await Class.findById(id);
+        const id = new Types.ObjectId(classId);
+        schoolQueryResult = (await Class.findById(id)).toJSON;
     } catch (e) {
         console.debug(e);
     }

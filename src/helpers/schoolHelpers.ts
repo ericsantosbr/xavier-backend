@@ -12,7 +12,7 @@ export async function getSchool(schoolId: string) {
 
     try {
         const id = new Types.ObjectId(schoolId);
-        schoolQueryResult = await School.findById(id);
+        schoolQueryResult = (await School.findById(id)).toJSON();
     } catch (e) {
         console.debug(e);
     }
