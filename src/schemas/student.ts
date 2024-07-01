@@ -7,12 +7,25 @@ const studentSchema: Schema = new Schema({
     parentContact: String,
     birthDate: Date,
     address: String,
-    cpf: {type: String, unique: true },
-    school: String,
+    cpf: {
+        type: String,
+        unique: true
+    },
+    school: {
+        type: Schema.Types.ObjectId,
+        ref: 'Schools'
+    },
     notes: Array,
-    class: String
+    class: {
+        type: Schema.Types.ObjectId,
+        ref: 'Class'
+    },
+    grades: [{
+        type: Schema.Types.ObjectId,
+        ref: 'EvaluationResults'
+    }]
 });
 
-const studentModel = model ('Student', studentSchema);
+const studentModel = model ('Students', studentSchema);
 
 export { studentModel };

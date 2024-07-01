@@ -6,14 +6,14 @@ dotenv.config();
 
 export async function getStudent (studentId: string) {
     // Establishes mongodb connection
-    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/Students`);
+    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/XavierDB`);
 
     const Student = studentModel;
     let studentSearchResult;
 
     try {
         const id = new Types.ObjectId(studentId);
-        studentSearchResult = await Student.findById(id);
+        studentSearchResult = await (await Student.findById(id)).populate('school');
     } catch (err) {
         var test = err;
         console.log(err);
@@ -24,7 +24,7 @@ export async function getStudent (studentId: string) {
 
 export async function createStudent (studentData: Object) {
     // Establishes mongodb connection
-    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/Students`);
+    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/XavierDB`);
 
     const Student = studentModel;
 
