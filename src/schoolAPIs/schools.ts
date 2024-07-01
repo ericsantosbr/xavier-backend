@@ -3,8 +3,8 @@ import { createSchool, getSchool } from "../helpers/schoolHelpers";
 
 export const schoolsRouter: Router = Router();
 
-schoolsRouter.get('/:id', (req: Request, res: Response, next: NextFunction) => {
-    let foundSchoolData = getSchool(req.params.id);
+schoolsRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+    let foundSchoolData = await getSchool(req.params.id);
     
     res.json(foundSchoolData);
 
