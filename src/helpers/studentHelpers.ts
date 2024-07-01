@@ -13,7 +13,7 @@ export async function getStudent (studentId: string) {
 
     try {
         const id = new Types.ObjectId(studentId);
-        studentSearchResult = await Student.findById(id);
+        studentSearchResult = await (await Student.findById(id)).populate('school');
     } catch (err) {
         var test = err;
         console.log(err);
