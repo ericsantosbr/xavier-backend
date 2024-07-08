@@ -7,7 +7,7 @@ import { schoolsRouter } from './schoolAPIs/schools';
 import { classesRouter } from './schoolAPIs/classes';
 
 const app = express();
-const port = 8050;
+const port = process.env.port || 8050;
 app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {
