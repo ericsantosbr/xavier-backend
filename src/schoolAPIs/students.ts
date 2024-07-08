@@ -3,7 +3,7 @@ import { getStudent, createStudent, deleteStudent } from "../helpers/studentHelp
 
 export const studentsRouter: Router = Router();
 
-studentsRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+studentsRouter.get('getStudent/:id', async (req: Request, res: Response, next: NextFunction) => {
     const studentId = req.params.id;
 
     let studentSearchResult = await getStudent(studentId);
@@ -13,7 +13,7 @@ studentsRouter.get('/:id', async (req: Request, res: Response, next: NextFunctio
     next();
 });
 
-studentsRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
+studentsRouter.post('createStudent/', (req: Request, res: Response, next: NextFunction) => {
     let responseJson = createStudent(req.body);
 
     res.json(responseJson);
@@ -21,7 +21,7 @@ studentsRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-studentsRouter.patch('/:id', (req: Request, res: Response, next: NextFunction) => {
+studentsRouter.patch('modifyStudent/:id', (req: Request, res: Response, next: NextFunction) => {
     const studentId = req.params.id;
     const patchedData = req.body;
 
@@ -35,7 +35,7 @@ studentsRouter.patch('/:id', (req: Request, res: Response, next: NextFunction) =
     next();
 });
 
-studentsRouter.delete('/', (req: Request, res: Response, next: NextFunction) => {
+studentsRouter.delete('deleteStudent/', (req: Request, res: Response, next: NextFunction) => {
     let responseJson = {
         id: req.params.id,
         name: 'Eric'
