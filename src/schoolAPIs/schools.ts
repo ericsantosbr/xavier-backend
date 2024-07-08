@@ -1,9 +1,9 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { createSchool, getSchool } from "../helpers/schoolHelpers";
+import { createSchool, getSchool, getStudentsInSchool } from "../helpers/schoolHelpers";
 
-export const schoolsRouter: Router = Router();
+export const schoolsRouter: Router = Router({mergeParams: true});
 
-schoolsRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
+schoolsRouter.get('/getSchool/:id', async (req: Request, res: Response, next: NextFunction) => {
     let foundSchoolData = await getSchool(req.params.id);
     
     res.json(foundSchoolData);
@@ -11,7 +11,7 @@ schoolsRouter.get('/:id', async (req: Request, res: Response, next: NextFunction
     next();
 });
 
-schoolsRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
+schoolsRouter.post('/createSchool', (req: Request, res: Response, next: NextFunction) => {
     let schoolCreateResult = createSchool(req.body);
 
     res.json(schoolCreateResult);
@@ -19,7 +19,7 @@ schoolsRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-schoolsRouter.patch('/', (req: Request, res: Response, next: NextFunction) => {
+schoolsRouter.patch('/updateSchool/:id', (req: Request, res: Response, next: NextFunction) => {
     let responseJson = {
         id: req.params.id,
         name: 'Central'
@@ -27,5 +27,22 @@ schoolsRouter.patch('/', (req: Request, res: Response, next: NextFunction) => {
 
     res.json(responseJson);
 
+    next();
+});
+
+schoolsRouter.get('/getStudentsInSchool/:id', (req: Request, res: Response, next: NextFunction) => {
+    let schoolId = req.params.id;
+
+    if (typeof schoolId === 'undefined' || typeof schoolId === 'undefined') {
+        return {};
+    }
+
+    let studentsListSearchResult;
+    try {
+        studentsListSearchResult = getStudentsInSchool(schoolId, 10, 10);
+    } catch(e) {
+        return studentsListSearchResult;
+    }
+    
     next();
 });

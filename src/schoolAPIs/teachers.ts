@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 
-export const teachersRouter: Router = Router();
+export const teachersRouter: Router = Router({mergeParams: true});
 
 teachersRouter.get('/:id', (req: Request, res: Response, next: NextFunction) => {
     let responseJson = {
