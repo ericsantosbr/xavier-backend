@@ -44,7 +44,7 @@ export async function getStudentsInSchool(schoolId: string, limit: number, skip:
         const searchQuery = {
             school: new Types.ObjectId(schoolId)
         };
-        studentsQueryResults = await Student.find(searchQuery).skip(10);
+        studentsQueryResults = await Student.find(searchQuery);
     } catch (e) {
         console.debug(e);
     }
