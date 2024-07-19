@@ -30,7 +30,7 @@ schoolsRouter.patch('/updateSchool/:id', (req: Request, res: Response, next: Nex
     next();
 });
 
-schoolsRouter.get('/getStudentsInSchool/:id', (req: Request, res: Response, next: NextFunction) => {
+schoolsRouter.get('/getStudentsInSchool/:id', async (req: Request, res: Response, next: NextFunction) => {
     let schoolId = req.params.id;
 
     if (typeof schoolId === 'undefined' || typeof schoolId === 'undefined') {
@@ -39,10 +39,12 @@ schoolsRouter.get('/getStudentsInSchool/:id', (req: Request, res: Response, next
 
     let studentsListSearchResult;
     try {
-        studentsListSearchResult = getStudentsInSchool(schoolId, 10, 10);
+        studentsListSearchResult = await getStudentsInSchool(schoolId, 10, 10);
     } catch(e) {
-        return studentsListSearchResult;
+        return {};
     }
+
+    res.json(studentsListSearchResult);
     
     next();
 });

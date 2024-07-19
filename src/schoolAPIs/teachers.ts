@@ -1,14 +1,15 @@
 import { Router, Request, Response, NextFunction } from "express";
+import { getTeacher } from "../helpers/teacherHelpers";
+
 
 export const teachersRouter: Router = Router({mergeParams: true});
 
 teachersRouter.get('/:id', (req: Request, res: Response, next: NextFunction) => {
-    let responseJson = {
-        id: req.params.id,
-        name: 'Eric'
-    }
+    // const id = typeof req.params.id !== 'undefined' ? req.params.id : null;
 
-    res.json(responseJson);
+    let teacherSearchResult = getTeacher(req.params.id);
+
+    res.json(teacherSearchResult);
 
     next();
 });
