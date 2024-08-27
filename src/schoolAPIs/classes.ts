@@ -3,23 +3,23 @@ import { createClass, getClass } from "../helpers/classesHelpers";
 
 export const classesRouter: Router = Router({mergeParams: true});
 
-classesRouter.get('/:id', async (req: Request, res: Response, next: NextFunction) => {
-    let foundSchoolData = await getClass(req.params.id);
+classesRouter.get('/getClass/:id', async (req: Request, res: Response, next: NextFunction) => {
+    let foundClassData = await getClass(req.params.id);
     
-    res.json(foundSchoolData);
+    res.json(foundClassData);
 
     next();
 });
 
-classesRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
-    let schoolCreateResult = createClass(req.body);
+classesRouter.post('/createClass', (req: Request, res: Response, next: NextFunction) => {
+    let classCreateResult = createClass(req.body);
 
-    res.json(schoolCreateResult);
+    res.json(classCreateResult);
 
     next();
 });
 
-classesRouter.patch('/', (req: Request, res: Response, next: NextFunction) => {
+classesRouter.patch('/modifyClass/:id', (req: Request, res: Response, next: NextFunction) => {
     let responseJson = {
         id: req.params.id,
         name: 'Central'
