@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { getStudent, createStudent, deleteStudent } from "../helpers/studentHelpers";
+import { getStudent, createStudent, modifyStudent, deleteStudent } from "../helpers/studentHelpers";
 
 export const studentsRouter: Router = Router({mergeParams: true});
 
@@ -23,14 +23,11 @@ studentsRouter.post('/createStudent', (req: Request, res: Response, next: NextFu
 
 studentsRouter.patch('/modifyStudent/:id', (req: Request, res: Response, next: NextFunction) => {
     const studentId = req.params.id;
-    const patchedData = req.body;
+    const incomingNewData = req.body;
 
-    let responseJson = {
-        id: req.params.id,
-        name: 'Eric'
-    }
+    const returnedDataFromUpdate = modifyStudent(studentId, incomingNewData);
 
-    res.json(responseJson);
+    res.json(returnedDataFromUpdate);
 
     next();
 });
