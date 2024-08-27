@@ -35,6 +35,16 @@ export async function createStudent (studentData: Object) {
     return result;
 }
 
+export async function modifyStudent (studentId: string, newStudentData: Object) {
+    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/XavierDB`);
+
+    const Student = studentModel;
+
+    const returnedUpdateData = studentModel.findOneAndUpdate({_id: studentId}, newStudentData, {runValidators: true, returnDocument: 'after'});
+
+    return returnedUpdateData;
+}
+
 export function deleteStudent (studentId: String) {
 
 }
