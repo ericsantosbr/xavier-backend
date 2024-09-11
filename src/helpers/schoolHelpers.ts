@@ -51,3 +51,20 @@ export async function getStudentsInSchool(schoolId: string, limit: number, skip:
 
     return studentsQueryResults;
 }
+
+
+export async function getSchoolsList() {
+    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/XavierDB`);
+
+    
+    const School = schoolModel;
+    let schoolsSearchResult;
+
+    try {
+        schoolsSearchResult = await School.find({});
+    } catch (e) {
+        console.debug(e);
+    }
+
+    return schoolsSearchResult;
+}
