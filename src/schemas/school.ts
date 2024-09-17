@@ -4,6 +4,7 @@ const schoolSchema = new Schema({
     name: String,
     address: String,
     established: Date,
+    phone: String,
     students: [{
         type: Schema.Types.ObjectId,
         ref: 'Students'

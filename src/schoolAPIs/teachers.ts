@@ -4,7 +4,7 @@ import { getTeacher } from "../helpers/teacherHelpers";
 
 export const teachersRouter: Router = Router({mergeParams: true});
 
-teachersRouter.get('/:id', (req: Request, res: Response, next: NextFunction) => {
+teachersRouter.get('/getTeacher/:id', (req: Request, res: Response, next: NextFunction) => {
     // const id = typeof req.params.id !== 'undefined' ? req.params.id : null;
 
     let teacherSearchResult = getTeacher(req.params.id);
@@ -14,7 +14,7 @@ teachersRouter.get('/:id', (req: Request, res: Response, next: NextFunction) => 
     next();
 });
 
-teachersRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
+teachersRouter.post('/createTeacher', (req: Request, res: Response, next: NextFunction) => {
     let responseJson = {
         id: req.params.id,
         name: 'Eric'
@@ -25,7 +25,7 @@ teachersRouter.post('/', (req: Request, res: Response, next: NextFunction) => {
     next();
 });
 
-teachersRouter.patch('/', (req: Request, res: Response, next: NextFunction) => {
+teachersRouter.patch('/modifyTeacher/:id', (req: Request, res: Response, next: NextFunction) => {
     let responseJson = {
         id: req.params.id,
         name: 'Eric'
