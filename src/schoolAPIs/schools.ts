@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { createSchool, getSchool, getStudentsInSchool, getSchoolsList } from "../helpers/schoolHelpers";
+import { createSchool, getSchool, getStudentsInSchool, getSchoolsList, getClassList } from "../helpers/schoolHelpers";
 
 export const schoolsRouter: Router = Router({mergeParams: true});
 
@@ -53,6 +53,16 @@ schoolsRouter.get('/getSchoolList', async (req: Request, res: Response, next: Ne
     let schoolsList = await getSchoolsList();
 
     res.json(schoolsList);
+
+    next();
+});
+
+schoolsRouter.get('/getSchoolClasses/:id', async (req: Request, res: Response, next: NextFunction) => {
+    const schoolID = req.params.id;
+
+    let classList = await getClassList(schoolID);
+
+    res.json(classList);
 
     next();
 });

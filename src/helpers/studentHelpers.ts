@@ -6,7 +6,7 @@ dotenv.config();
 
 export async function getStudent (studentId: string) {
     // Establishes mongodb connection
-    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/XavierDB`);
+    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DATABASE}`);
 
     const Student = studentModel;
     let studentSearchResult;
@@ -24,7 +24,7 @@ export async function getStudent (studentId: string) {
 
 export async function createStudent (studentData: Object) {
     // Establishes mongodb connection
-    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/XavierDB`);
+    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DATABASE}`);
 
     const Student = studentModel;
 
@@ -36,7 +36,7 @@ export async function createStudent (studentData: Object) {
 }
 
 export async function modifyStudent (studentId: string, newStudentData: Object) {
-    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/XavierDB`);
+    await connect(`mongodb://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}/${process.env.MONGO_DATABASE}`);
 
     const Student = studentModel;
 
