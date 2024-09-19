@@ -1,5 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { createClass, getClass } from "../helpers/classesHelpers";
+import { createClass, getClass, getStudentsInClass } from "../helpers/classesHelpers";
 
 export const classesRouter: Router = Router({mergeParams: true});
 
@@ -26,6 +26,15 @@ classesRouter.patch('/modifyClass/:id', (req: Request, res: Response, next: Next
     }
 
     res.json(responseJson);
+
+    next();
+});
+
+classesRouter.get('/getStudentsInClass/:id', async (req: Request, res: Response, next: NextFunction) => {
+    const classID = req.params.id;
+    let responseData = await getStudentsInClass(classID);
+
+    res.json(responseData);
 
     next();
 });
