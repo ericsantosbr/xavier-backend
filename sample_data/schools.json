@@ -1,0 +1,8 @@
+[
+    {
+        "_id": {"$oid": "66e4650160a650283915af8e"},
+        "name": "E. E. Testilson da Silva",
+        "address": "Rua Um, 365, Centro - Picuinha do Sul, Mato Grosso do Norte",
+        "established": "2021-06-01"
+    }
+]
